@@ -1,0 +1,10 @@
+language: clojure
+
+script: lein cljsbuild once min
+
+after_success:
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
+
+env:
+  global:
+    - secure: "uLAqCAoa3u3DqtEQVs9jVdkVfAbXAkNDwD+oJHtasPzzuzmRFQk6YpTw8E4vm/mK53N5QsDQPoW/b9g+q5KiPwo3jq58TIcbmsWgfnBks/QNfuJEGjsYlbRBiglnI3bsY2RjhwLydeGsSBNEAAjmybrKPsPDembmVTIq3gRVdWliBROIfZKcjBXq0y/KX7CJsJkuUy8enz50aGv7XDDa+3MeLtMmFM3JkoIPC4wU6IeUrdH+7vqPVhwKE4S6Zcpv947G3CnyLunecYATTw8AZu6/ZGDs/EGG0yZ6bPkrvg6VkK6wCqNi1DqQ3MVkH+4xBTH650GC3H9cnaJJ1hJIww8h+DyGDMk6bbWS38oAafL2ov8cz6MEk5aTctOJuQHRtqtLeK5Rj8dpL9CnyrCtak6FMbMWIVAPmyyFPa56LFxEblAfirdvFLvklm8xg/VnV7eWOW8WInvC6u5VIHfifAYerd2n/GhOFSZ63SAUtpuuYK8FlrAnfgJGY4qigaJRNtZt2hbSMT4gOU9DeFD1pwvj8eJHTEh9+L087QcbqtwkVC6OBNAC7YmZ+8PCiBTggEZrDMj1qQVQ90DRxmsIgfdo5RChyVzF6qg2WJusXBZRxIUywxOIFFfEbVXdPIFh9ofGXEkQnjnc/gstA/li7mAQgyfehpXcxbdywJ00gaA="
