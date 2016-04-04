@@ -26,4 +26,5 @@
  ::render
  (fn [_ _ _ data] (render data)))
 
-
+(defn ^:export main []
+  (render @state))
