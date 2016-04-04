@@ -2,10 +2,7 @@
 
 rev=$(git rev-parse --short HEAD)
 
-mkdir _build/js/compiled
-cd _build
-cp ../resources/public/index.html ./index.html
-cp ../resources/public/js/compiled/dialog.js ./js/compiled/dialog.js
+cd resources/public
 
 git init
 git config user.name "Anders Furseth"
