@@ -1,28 +1,35 @@
 (ns dialog.core
-  (:require [quiescent.core :as q]
-            [quiescent.dom :as d]))
+  (:require [reagent.core :as r]))
 
-(defonce state
-  (atom
-   {:text "Hello world!"
-    :count 0}))
+(enable-console-print!)
 
-(q/defcomponent App
-  [val]
-  (d/div {}
-    (d/button {:onClick #(swap! state update :count inc)}
-      "You've clicked me " (:count val) " times.")))
+(defonce timer (r/atom (js/Date.)))
 
-(defn render
-  [data]
-  (q/render
-   (App data)
-   (.getElementById js/document "app")))
+(defonce time-color (r/atom "#f34"))
 
-(add-watch
- state
- ::render
- (fn [_ _ _ data] (render data)))
+(defonce time-updater (js/setInterval
+                       #(reset! timer (js/Date.)) 1000))
+
+(defn clock []
+  (let [time-str (-> @timer .toTimeString (clojure.string/split " ") first)]
+    [:div.example-clock
+     {:style {:color @time-color}}
+     time-str]))
+
+(defn color-input []
+  [:div.color-input
+   "Time color: "
+   [:input {:type "text"
+            :value @time-color
+            :on-change #(reset! time-color (-> % .-target .-value))}]])
+
+(defn simple-example []
+  [:div
+   [:h1 "Hello there!"]
+   [clock]
+   [color-input]])
 
 (defn ^:export main []
-  (render @state))
+  (r/render
+   [simple-example]
+   (js/document.getElementById "app")))

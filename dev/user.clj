@@ -1,8 +1,6 @@
 (ns user
   (:use [figwheel-sidecar.repl-api :as ra]))
 
-(enable-console-print!)
-
 (defn start []
   (ra/start-figwheel!)
   nil)
