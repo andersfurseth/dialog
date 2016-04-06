@@ -2,8 +2,6 @@
   (:require [quiescent.core :as q]
             [quiescent.dom :as d]))
 
-(enable-console-print!)
-
 (defonce state
   (atom
    {:text "Hello world!"

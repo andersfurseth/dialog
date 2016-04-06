@@ -1,9 +1,15 @@
 (ns user
   (:use [figwheel-sidecar.repl-api :as ra]))
 
-(defn start [] (ra/start-figwheel!))
+(enable-console-print!)
 
-(defn stop [] (ra/stop-figwheel!))
+(defn start []
+  (ra/start-figwheel!)
+  nil)
 
-(defn cljs [] (ra/cljs-repl "dev"))
+(defn stop []
+  (ra/stop-figwheel!))
 
+(defn cljs []
+  (ra/cljs-repl "dev")
+  nil)
